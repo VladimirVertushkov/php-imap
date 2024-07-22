@@ -1137,9 +1137,10 @@ class Message {
             $folder = $this->client->getFolderByPath($folder_path);
 
             $this->client->openFolder($this->folder_path);
-            if ($this->client->getConnection()->moveMessage($folder->path, $this->getSequenceId(), null, $this->sequence)->validatedData()) {
-                return $this->fetchNewMail($folder, $next_uid, "moved", $expunge);
-            }
+            // if ($this->client->getConnection()->moveMessage($folder->path, $this->getSequenceId(), null, $this->sequence)->validatedData()) {
+            //     return $this->fetchNewMail($folder, $next_uid, "moved", $expunge);
+            // }
+            $this->client->getConnection()->moveMessage($folder->path, $this->getSequenceId(), null, $this->sequence)->validatedData();
         }
 
         return null;
